@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import BeerList from '../../components/beerList';
+import NoteList from '../../components/noteList';
 //css
 import './index.css';
 
@@ -17,7 +19,7 @@ let note = {};
 let notesService;
 
 function Beers(props) {
-   
+
     const [ABV, setABV] = useState([3, 10]);
     const [IBU, setIBU] = useState([10, 100]);
     const [beers, setBeers] = useState([]);
@@ -53,7 +55,7 @@ function Beers(props) {
 
     const handleSave = (event) => {
         event.preventDefault();
-        notesService.saveNote(note, notes,title,message);
+        notesService.saveNote(note, notes, title, message);
         setNotes(JSON.parse(localStorage.getItem("comments")));
         setTitle("");
         setMessage("");
@@ -62,7 +64,7 @@ function Beers(props) {
 
     const handleDelete = (event) => {
         event.preventDefault();
-        notesService.deleteNote(event, setNotes,notes)
+        notesService.deleteNote(event, setNotes, notes)
     }
 
     const handleEdit = (event) => {
@@ -105,55 +107,46 @@ function Beers(props) {
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <Button onClick={handleBeerApi} style={{ marginTop: '20px', marginBottom: '40px'}} className='button-submit-beers' variant='contained' color='secondary'>
+                    <Button onClick={handleBeerApi} style={{ marginTop: '20px', marginBottom: '40px' }} className='button-submit-beers' variant='contained' color='secondary'>
                         Submit
                     </Button>
                 </Grid>
                 <Grid item xs={12} md={8} className='grid-item-beer-box'>
                     {beers.length ? (
                         beers.map((beer) => (
-                            <Zoom key={beer.id}>
-                                <h3>{beer.name}</h3>
-                                <img src={beer.image_url} id="image-beers-api"></img>
-                                <p>{beer.description}</p>
-                                <p>ABV: {beer.abv}</p>
-                                <p>IBU: {beer.ibu}</p>
-                            </Zoom>
+                            <BeerList key={beer.id} name={beer.name} image={beer.image_url} id="image-beers-api"
+                                description={beer.description} abv={beer.abv} ibu={beer.ibu}></BeerList>
                         ))
                     ) : (<h3>No Beers to Display</h3>)}
                 </Grid>
                 <Grid item xs={12} md={4} className='grid-item-note-box'>
                     <h1>Notes</h1>
+                    <TextField
+                        style={{ clear: 'both' }}
+                        id='filled-multiline-flexible'
+                        label='Title'
+                        multiline
+                        rowsMax={4}
+                        value={title}
+                        onChange={(event) => { setTitle(event.target.value) }}
+                        variant='filled'
+                    ></TextField>
+                    <TextField
+                        id='filled-multiline-static'
+                        label='Message'
+                        multiline
+                        rows={4}
+                        value={message}
+                        onChange={(event) => { setMessage(event.target.value) }}
+                        variant='filled'
+                    ></TextField>
+                    <br></br>
+                    <Button onClick={handleSave} variant='contained'>Save</Button>
                     {props.user ? (
                         <>
-                            <TextField
-                                id='filled-multiline-flexible'
-                                label='Title'
-                                multiline
-                                rowsMax={4}
-                                value={title}
-                                onChange={(event) => { setTitle(event.target.value) }}
-                                variant='filled'
-                            ></TextField>
-                            <TextField
-                                id='filled-multiline-static'
-                                label='Message'
-                                multiline
-                                rows={4}
-                                value={message}
-                                onChange={(event) => { setMessage(event.target.value) }}
-                                variant='filled'
-                            ></TextField>
-                            <br></br>
-                            <Button onClick={handleSave} variant='contained'>Save</Button>
                             {notes.length ? (
                                 notes.map((data) => (
-                                    <div key={data.id} className="div-notes">
-                                        <p className='p-notes-title'>{data.title}</p>
-                                        <p>{data.message}</p>
-                                        <button onClick={handleEdit} id={data.id}>Edit</button>
-                                        <button onClick={handleDelete} id={data.id}>Delete</button>
-                                    </div>
+                                    <NoteList id={data.id} pclass='p-notes-title' title={data.title} message={data.message} handleEdit={handleEdit} handleDelete={handleDelete}></NoteList>
                                 ))
                             ) : (<h3>No notes to display</h3>)}
                         </>

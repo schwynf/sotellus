@@ -70,7 +70,9 @@ export default function Login() {
                         margin="normal"
                         required
                         fullWidth
+                        style={{backgroundColor: "white"}}
                         id="email"
+                        value="schwynf@gmail.com"
                         label="Email Address"
                         name="email"
                         autoComplete="email"
@@ -81,6 +83,7 @@ export default function Login() {
                         margin="normal"
                         required
                         fullWidth
+                        style={{backgroundColor: "white"}}
                         name="password"
                         label="Password"
                         type="password"
