@@ -45,8 +45,10 @@ function Beers(props) {
     };
 
     const handleBeerApi = async (event) => {
-        let data = await axios.get(`https://api.punkapi.com/v2/beers/?abv_gt=${ABV[0]}&abv_lt=${ABV[1]}&ibu_gt=${ABV[0]}&ibu_lt=${ABV[1]}`);
+        let data = await axios.get(`https://api.punkapi.com/v2/beers/?abv_gt=${ABV[0]}&abv_lt=${ABV[1]}&ibu_gt=${IBU[0]}&ibu_lt=${IBU[1]}`);
         setBeers(data.data);
+        console.log(data.data)
+
     }
 
     const handleSave = (event) => {
@@ -109,11 +111,13 @@ function Beers(props) {
                 </Grid>
                 <Grid item xs={12} md={8} className='grid-item-beer-box'>
                     {beers.length ? (
-                        beers.map((data) => (
-                            <Zoom key={data.id}>
-                                <h3>{data.name}</h3>
-                                <img src={data.image_url} id="image-beers-api"></img>
-                                <p>{data.description}</p>
+                        beers.map((beer) => (
+                            <Zoom key={beer.id}>
+                                <h3>{beer.name}</h3>
+                                <img src={beer.image_url} id="image-beers-api"></img>
+                                <p>{beer.description}</p>
+                                <p>ABV: {beer.abv}</p>
+                                <p>IBU: {beer.ibu}</p>
                             </Zoom>
                         ))
                     ) : (<h3>No Beers to Display</h3>)}
