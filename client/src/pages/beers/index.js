@@ -131,6 +131,7 @@ function Beers(props) {
                         onChange={(event) => { setTitle(event.target.value) }}
                         variant='filled'
                     ></TextField>
+                    <div style={{height:"2px"}}></div>
                     <TextField
                         id='filled-multiline-static'
                         label='Message'
