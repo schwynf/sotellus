@@ -1,0 +1,16 @@
+.div-svg-header{
+    width: 100%;
+}
+
+.toolbar{
+    justify-content: center;
+        overflow-x: auto;
+        border-bottom: solid;
+        /* background-color: orange; */
+        margin-top: -3px;
+}
+
+.toolbar-link{
+     padding: 20px;
+    flex-shrink: 0;
+}

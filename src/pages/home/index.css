@@ -1,0 +1,94 @@
+.grid-item-left-home{
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    padding: 30px;
+}
+
+.grid-item-left-home #h3-the-finest{
+    font-family: Papyrus;
+    margin-top:-10px;
+}
+
+.grid-item-left-home #image-group-drinking{
+    width: 100%;
+}
+
+.grid-item-left-home .div-club-deals{
+    text-align: left;
+}
+
+.grid-item-left-home #image-beers-cheers{
+    width: 40%;
+    float: right;
+    height:200px; 
+}
+
+.grid-item-left-home .p-club-deals{
+    margin:0px;
+}
+
+.grid-item-right-home{
+    padding: 10px;
+    border-bottom: 1px solid;
+}
+
+.grid-item-right-home #h3-dads-grads{
+    margin-top: 9px;
+    margin-bottom: 0px;
+}
+
+.grid-item-right-home #h4-buy-get{
+    margin-top: 0px;
+    border-bottom: 2px solid;
+}
+.grid-item-right-home .div-right-arrow-icon{
+    background-color: red;
+    height: 40px;
+    width: 106.5%; 
+    margin-left: -10px;
+}
+
+.grid-item-right-home .span-right-arrow-icon{
+    float: right;
+}
+
+.grid-item-right-home #h4-arrow-title{
+    margin-bottom: -25px;
+    margin-top: 10px;
+    padding-top: 5px;
+}
+
+.grid-item-right-home .h-stories{
+    border-bottom:2px dotted black;
+}
+
+.grid-item-right-home .paper-stories{
+    height: 300px;
+    width: 300px; 
+    padding-bottom: 30px;
+    margin-bottom: 10px;
+}
+
+.grid-item-right-home #h-popular-stories{
+    margin-top:20px;
+}
+.grid-item-right-home .div-image-bottle{
+    height: 400px;
+    background-color: grey;
+    padding-top: 10%;
+}
+.grid-item-right-home #image-beers-cheers{
+    height: 90%;
+    width: 80%; 
+}
+.grid-item-right-home .paper-image-beers{
+    height: 300px;
+    width: 300px;
+    padding-top: 30px;
+    margin-bottom: 10px;
+    background-color: grey;
+    /* margin-left: 50px; */
+
+}
+
+
