@@ -68,3 +68,9 @@
         display: none;
 }
 
+@media screen and (max-width: 800px) {
+    .grid-item-note-box{
+        border-left: none;
+    }
+  }
+

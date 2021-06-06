@@ -1,8 +1,9 @@
 //dependencies
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 //components
 import Header from './components/header';
 import Footer from './components/footer';
@@ -13,20 +14,27 @@ import Account from "./pages/account/index";
 //css
 import './App.css'
 
-function App() {
+function App(props) {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+
+  const [color, setColor] = useState('container-light')
 
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem("user"));
     if (user) {
-      dispatch({ type: 'ADD_USER', payload: user })
+      props.dispatch({ type: 'ADD_USER', payload: user })
     }
-  }, [])
+    if (props.isLight) {
+      setColor('container-dark')
+    } else {
+      setColor('container-light')
+  }
+  }, [props.isLight])
 
   return (
     <Router>
-      <Container maxWidth="md" className="container">
+      <Container maxWidth="md" className={color}>
         <Header></Header>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -41,4 +49,7 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return { user: state.user, isLight: state.isLight }
+}
+export default connect(mapStateToProps)(App);

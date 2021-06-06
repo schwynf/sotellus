@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 const initialState = {
-  isLight: true,
+  isLight: false,
   user:null
 }
 

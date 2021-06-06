@@ -1,10 +1,11 @@
 //dependencies
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 //components
 import Toolbar from '@material-ui/core/Toolbar';
 import HeaderSVG from '../headerSVG';
+import Switch from '@material-ui/core/Switch';
 //css
 import './index.css';
 
@@ -14,7 +15,35 @@ const sections = [
     { title: 'Breweries', url: '#' }
 ];
 
-function Header() {
+function Header(props) {
+    const [mode, setMode] = useState(false);
+    const [color, setColor] = useState('black')
+
+    const handleChange = () => {
+        props.dispatch({ type: 'SWITCH_MODE' });
+        localStorage.setItem('mode', JSON.stringify({ color: !mode }));
+
+    };
+
+    useEffect(() => {
+        console.log(props.isLight)
+        setMode(props.isLight)
+
+        if (props.isLight) {
+            setColor('white')
+        } else {
+            let mode = JSON.parse(localStorage.getItem("mode"))
+            if (mode) {
+                if (mode.color) {
+                    props.dispatch({ type: 'SWITCH_MODE' });
+                    setColor('white')
+                } else {
+                    setColor('black')
+                }
+            }
+        }
+    }, [props.isLight])
+
     return (
         <div className="nav">
             <div className='div-svg-header'>
@@ -25,14 +54,23 @@ function Header() {
                     <Link
                         key={section.title}
                         to={section.url}
-                        style={{color:'black', marginRight:'10px'}}
+                        style={{ color: color, marginRight: '10px' }}
                     >
                         {section.title}
                     </Link>
                 ))}
+                <Switch
+                    checked={mode}
+                    onChange={handleChange}
+                    name="checkedA"
+                    inputProps={{ 'aria-label': 'primary checkbox' }}
+                />
             </Toolbar>
         </div>
     );
 }
 
-export default Header;
+const mapStateToProps = state => {
+    return { user: state.user, isLight: state.isLight }
+}
+export default connect(mapStateToProps)(Header);
