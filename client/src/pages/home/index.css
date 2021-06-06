@@ -87,15 +87,21 @@
     padding-top: 30px;
     margin-bottom: 10px;
     background-color: grey;
-    /* margin-left: 50px; */
-
 }
 @media screen and (max-width: 800px) {
     .paper-stories {
-      margin-left: 30px;
+      margin-left: 240px;
     }
     .paper-image-beers {
-      margin-left: 30px;
+      margin-left: 240px;
+    }
+  }
+@media screen and (max-width: 550px) {
+    .paper-stories {
+      margin-left: 120px;
+    }
+    .paper-image-beers {
+      margin-left: 120px;
     }
   }
 @media screen and (max-width: 500px) {

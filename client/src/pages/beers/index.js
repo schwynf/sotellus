@@ -121,30 +121,30 @@ function Beers(props) {
                 </Grid>
                 <Grid item xs={12} md={4} className='grid-item-note-box'>
                     <h1>Notes</h1>
-                    <TextField
-                        style={{ clear: 'both' }}
-                        id='filled-multiline-flexible'
-                        label='Title'
-                        multiline
-                        rowsMax={4}
-                        value={title}
-                        onChange={(event) => { setTitle(event.target.value) }}
-                        variant='filled'
-                    ></TextField>
-                    <div style={{height:"2px"}}></div>
-                    <TextField
-                        id='filled-multiline-static'
-                        label='Message'
-                        multiline
-                        rows={4}
-                        value={message}
-                        onChange={(event) => { setMessage(event.target.value) }}
-                        variant='filled'
-                    ></TextField>
-                    <br></br>
-                    <Button onClick={handleSave} variant='contained'>Save</Button>
                     {props.user ? (
                         <>
+                            <TextField
+                                style={{ clear: 'both' }}
+                                id='filled-multiline-flexible'
+                                label='Title'
+                                multiline
+                                rowsMax={4}
+                                value={title}
+                                onChange={(event) => { setTitle(event.target.value) }}
+                                variant='filled'
+                            ></TextField>
+                            <div style={{ height: "2px" }}></div>
+                            <TextField
+                                id='filled-multiline-static'
+                                label='Message'
+                                multiline
+                                rows={4}
+                                value={message}
+                                onChange={(event) => { setMessage(event.target.value) }}
+                                variant='filled'
+                            ></TextField>
+                            <br></br>
+                            <Button onClick={handleSave} variant='contained'>Save</Button>
                             {notes.length ? (
                                 notes.map((data) => (
                                     <NoteList id={data.id} pclass='p-notes-title' title={data.title} message={data.message} handleEdit={handleEdit} handleDelete={handleDelete}></NoteList>

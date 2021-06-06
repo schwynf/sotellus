@@ -62,7 +62,7 @@ export default function Login() {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    Login
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField
@@ -102,7 +102,7 @@ export default function Login() {
                         className={classes.submit}
                         onClick={signIn}
                     >
-                        Sign In
+                        Login
                     </Button>
                     <Grid container>
                         <Grid item xs>
