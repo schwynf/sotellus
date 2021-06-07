@@ -19,27 +19,25 @@ function Header(props) {
     const [mode, setMode] = useState(false);
     const [color, setColor] = useState('black')
 
-    const handleChange = () => {
-        props.dispatch({ type: 'SWITCH_MODE' });
-        localStorage.setItem('mode', JSON.stringify({ color: !mode }));
-
-    };
-
     useEffect(() => {
         setMode(props.isLight)
         if (props.isLight) {
             setColor('white')
         } else {
             let mode = JSON.parse(localStorage.getItem("mode"))
-            if (mode) {
-                if (mode.color) {
-                    props.dispatch({ type: 'SWITCH_MODE' });
-                } else {
-                    setColor('black')
-                }
+            if(mode && mode.color){
+                props.dispatch({ type: 'SWITCH_MODE' });
+            }else{
+                setColor('black')
             }
         }
     }, [props.isLight])
+
+    const handleChange = () => {
+        props.dispatch({ type: 'SWITCH_MODE' });
+        localStorage.setItem('mode', JSON.stringify({ color: !mode }));
+    };
+
 
     return (
         <div className="nav">
