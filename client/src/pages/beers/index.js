@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import NotesAPI from '../../utils/comments.js';
+import Note from '../../utils/note.js';
 //components
 import Zoom from 'react-reveal/Zoom';
 import TextField from '@material-ui/core/TextField';
@@ -31,10 +31,9 @@ function Beers(props) {
         let data = await axios.get(`https://api.punkapi.com/v2/beers/?abv_gt=${ABV[0]}&abv_lt=${ABV[1]}`);
         setBeers(data.data);
         if (props.user) {
-            notesService = new NotesAPI();
-            let comments = notesService.getNotes();
-            if (comments) {
-                setNotes(comments);
+            notesService = new Note();
+            if (notesService.getNotes()) {
+                setNotes(notesService.getNotes());
             }
         }
     }, [props.user]);
@@ -49,14 +48,12 @@ function Beers(props) {
     const handleBeerApi = async (event) => {
         let data = await axios.get(`https://api.punkapi.com/v2/beers/?abv_gt=${ABV[0]}&abv_lt=${ABV[1]}&ibu_gt=${IBU[0]}&ibu_lt=${IBU[1]}`);
         setBeers(data.data);
-        console.log(data.data)
-
     }
 
     const handleSave = (event) => {
         event.preventDefault();
         notesService.saveNote(note, notes, title, message);
-        setNotes(JSON.parse(localStorage.getItem("comments")));
+        setNotes(notesService.getNotes());
         setTitle("");
         setMessage("");
         note = {};

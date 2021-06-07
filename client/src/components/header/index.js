@@ -26,9 +26,7 @@ function Header(props) {
     };
 
     useEffect(() => {
-        console.log(props.isLight)
         setMode(props.isLight)
-
         if (props.isLight) {
             setColor('white')
         } else {
@@ -36,7 +34,6 @@ function Header(props) {
             if (mode) {
                 if (mode.color) {
                     props.dispatch({ type: 'SWITCH_MODE' });
-                    setColor('white')
                 } else {
                     setColor('black')
                 }
