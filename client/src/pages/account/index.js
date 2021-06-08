@@ -1,7 +1,7 @@
 //dependencies
 import React, {useState,useEffect} from 'react';
 import { connect } from 'react-redux';
-import UserAPI from '../../utils/user.js';
+import User from '../../utils/user.js';
 //components
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -18,7 +18,7 @@ function Account(props) {
 
     useEffect(()=>{
         if(props.user){
-            user = new UserAPI(props.user.name,props.user.email);
+            user = new User(props.user.name,props.user.email);
             setName(user.name);
             setEmail(user.email);
         }else{
@@ -29,7 +29,6 @@ function Account(props) {
 
     const handleEditName = (event) =>{
         event.preventDefault();
-        localStorage.setItem("user", JSON.stringify({name,email}));
         user.updateNameAndEmail(props,name,email);
     }
 

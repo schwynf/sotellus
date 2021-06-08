@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 const initialState = {
-  isLight: false,
+  isDark: false,
   user:null
 }
 
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
   if (action.type === 'SWITCH_MODE'){
     return {
       ...state,
-      isLight: !state.isLight
+      isDark: !state.isDark
     }
   }
   return state

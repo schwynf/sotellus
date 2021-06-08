@@ -4,12 +4,11 @@ export default class Note {
     }
 
     getNotes() {
-        return JSON.parse(localStorage.getItem("comments"));
+        return JSON.parse(localStorage.getItem("notes"));
     }
 
     saveNote(note, notes,title,message) {
         let comments = [];
-        console.log(note)
         if (note.id) {
             for (let i = 0; i < notes.length; i++) {
                 if (note.id != notes[i].id) {
@@ -20,7 +19,7 @@ export default class Note {
         } else {
             comments = [...notes, { title, message, id: Math.random() }];
         }
-        localStorage.setItem("comments", JSON.stringify(comments));
+        localStorage.setItem("notes", JSON.stringify(comments));
     }
 
     updateNote(event, notes) {
@@ -34,7 +33,7 @@ export default class Note {
         let comments = notes.filter((note) => {
             return note.id != event.target.id
         })
-        localStorage.setItem("comments", JSON.stringify(comments));
+        localStorage.setItem("notes", JSON.stringify(comments));
         setNotes(comments);
     }
 }

@@ -25,12 +25,12 @@ function App(props) {
     if (user) {
       props.dispatch({ type: 'ADD_USER', payload: user })
     }
-    if (props.isLight) {
+    if (props.isDark) {
       setColor('container-dark')
     } else {
       setColor('container-light')
   }
-  }, [props.isLight])
+  }, [props.isDark])
 
   return (
     <Router>
@@ -50,6 +50,6 @@ function App(props) {
 }
 
 const mapStateToProps = state => {
-  return { user: state.user, isLight: state.isLight }
+  return { user: state.user, isDark: state.isDark }
 }
 export default connect(mapStateToProps)(App);

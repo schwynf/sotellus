@@ -20,18 +20,18 @@ function Header(props) {
     const [color, setColor] = useState('black')
 
     useEffect(() => {
-        setMode(props.isLight)
-        if (props.isLight) {
+        setMode(props.isDark)
+        if (props.isDark) {
             setColor('white')
         } else {
             let mode = JSON.parse(localStorage.getItem("mode"))
-            if(mode && mode.color){
+            if (mode && mode.color) {
                 props.dispatch({ type: 'SWITCH_MODE' });
-            }else{
+            } else {
                 setColor('black')
             }
         }
-    }, [props.isLight])
+    }, [props.isDark])
 
     const handleChange = () => {
         props.dispatch({ type: 'SWITCH_MODE' });
@@ -66,6 +66,6 @@ function Header(props) {
 }
 
 const mapStateToProps = state => {
-    return { user: state.user, isLight: state.isLight }
+    return { user: state.user, isDark: state.isDark }
 }
 export default connect(mapStateToProps)(Header);
